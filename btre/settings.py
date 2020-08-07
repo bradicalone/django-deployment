@@ -28,16 +28,20 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# Application definition, add new Apps below
 
 INSTALLED_APPS = [
-    'pages.apps.PagesConfig', #Add this from pages/apps.py, recognize this as an app
+    'pages.apps.PagesConfig',  # Add this from pages/apps.py, recognize this as an app
+    'listings.apps.ListingsConfig',  # Add this from listings/apps.py, recognize this as an app
+    'realtors.apps.RealtorsConfig',  # Add this from realtors/apps.py, recognize this as an app
+    'accounts.apps.AccountsConfig',  # Add this from realtors/apps.py, recognize this as an app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',  # Added this to add commas and periods for prices in the listing prictures
 ]
 
 MIDDLEWARE = [
@@ -76,8 +80,11 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'btredb',
+        'USER': 'postgres',
+        'PASSWORD': '321Bradical321!',
+        'HOST': 'localhost'
     }
 }
 
@@ -123,3 +130,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'btre/static')
 ]
+
+# Media Folder Settings
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
