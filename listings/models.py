@@ -3,6 +3,7 @@ from datetime import datetime
 from realtors.models import Realtor
 
 class Listing(models.Model):
+    # ForeignKey makes relationships 
     realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING) #DO_NOTHING so nothing happens incase you delete Realtor
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
@@ -17,12 +18,12 @@ class Listing(models.Model):
     sqft = models.IntegerField()
     lot_size = models.DecimalField(max_digits=5, decimal_places=1)
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d')
-    photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it options
-    photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it options
-    photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it options
-    photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it options
-    photo_5 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it options
-    photo_6 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it options
+    photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it optional
+    photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it optional
+    photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it optional
+    photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it optional
+    photo_5 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it optional
+    photo_6 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True) #blank=True makes it optional
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=datetime.now, blank=True) #blank=true makes it options
 
